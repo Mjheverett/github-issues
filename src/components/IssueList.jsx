@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
+import { Route, Link, useRouteMatch } from 'react-router-dom';
 
 import 'bulma/css/bulma.css';
 
-import { Column, Columns, Title } from 'bloomer';
+import { Box, Column, Columns, Container, Subtitle, Title } from 'bloomer';
 
-import Issue from './Issue';
+import IssueDetail from './IssueDetail';
 
 class IssueList extends Component {
     state = {
@@ -29,16 +30,31 @@ class IssueList extends Component {
         const { issues } = this.state;
 
         return (
-            <Columns isCentered>
-                <Column isSize='3/4'>
-                    <Title isSize={2}>Issue List</Title>
-                    {
-                        issues.map((issue, index) => (
-                            <Issue issue={issue} key={`issue=${index}`}/>
-                        ))
-                    }
-                </Column>
-            </Columns>
+            <>
+                <nav>
+                    <Columns isCentered>
+                        <Column isSize='1/2'>
+                            <Title isSize={2}>Issue List</Title>
+                            {
+                                issues.map((issue, index) => (
+                                    <Container>
+                                        <Box key={`${issue.number}`}>
+                                            <Subtitle isSize={6}>{issue.title}</Subtitle>
+                                            <Link to={`/issue/${issue.number}`}  className="link">
+                                                View Issue Details
+                                            </Link>
+                                        </Box>
+                                        <br />
+                                    </Container>
+                                ))
+                            }
+                        </Column>
+                    </Columns>
+                </nav>
+                <Route path={`/issue/:issue_number`}>
+                    <IssueDetail issues={issues} />
+                </Route>
+            </>
         )
     }
 }
