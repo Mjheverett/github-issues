@@ -1,13 +1,20 @@
 import React from 'react';
 
+import 'bulma/css/bulma.css';
+
+import { Box, Container, Subtitle } from 'bloomer';
+
 const Issue = props => {
     const { issue } = props;
     return (
-        <>
-            <h3>{issue.title}</h3>
-            <a href={issue.url}>{issue.url}</a>
-            <p>{issue.body}</p>
-        </>
+        <Container>
+            <Box>
+                <Subtitle isSize={4}>{issue.title}</Subtitle>
+                <a href={issue.url} className="is-link">{issue.url}</a>
+                <p className="content">{issue.body}</p>
+            </Box>
+            <br />
+        </Container>
     )
 }
 

@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
 
+import 'bulma/css/bulma.css';
+
+import { Column, Columns, Title } from 'bloomer';
+
 import Issue from './Issue';
 
 class IssueList extends Component {
@@ -25,15 +29,16 @@ class IssueList extends Component {
         const { issues } = this.state;
 
         return (
-            <>
-                <h1>Issue List</h1>
-                {
-                    issues.map((issue, index) => (
-                        <Issue issue={issue} key={`issue=${index}`}/>
-                    ))
-                }
-                
-            </>
+            <Columns isCentered>
+                <Column isSize='3/4'>
+                    <Title isSize={2}>Issue List</Title>
+                    {
+                        issues.map((issue, index) => (
+                            <Issue issue={issue} key={`issue=${index}`}/>
+                        ))
+                    }
+                </Column>
+            </Columns>
         )
     }
 }
