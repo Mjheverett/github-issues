@@ -17,6 +17,16 @@
   color: #61dafb;
 }
 
+.subtitle {
+  text-align: center;
+}
+
 .title {
   text-align: center;
+}
+
+h3 {
+  font-size: large;
+  font-weight: bold;
+  margin-top: 10px;
 }

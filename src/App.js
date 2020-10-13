@@ -8,12 +8,13 @@ import { Title } from 'bloomer';
 
 // Import my components
 import IssueList from './components/IssueList';
-import Issue from './components/Issue';
 
 function App() {
   return (
     <div className="App">
-      <IssueList />
+      <Router>
+        <IssueList />
+      </Router>
     </div>
   );
 }

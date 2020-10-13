@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
+import { Route, Link } from 'react-router-dom';
 
 import 'bulma/css/bulma.css';
-
 import { Box, Column, Columns, Container, Subtitle, Title } from 'bloomer';
+
+import IssueDetail from './IssueDetail';
 
 class IssueList extends Component {
     state = {
         issues: [],
-    }
+    };
 
     loadData = async () => {
         const response = await fetch('https://api.github.com/repos/facebook/create-react-app/issues');
@@ -19,28 +21,39 @@ class IssueList extends Component {
         const issues = await this.loadData();
 
         this.setState({
-            issues: issues,
-        })
-    };
+            issues,
+        });
+    }
 
     render() {
         const { issues } = this.state;
 
         return (
             <Columns isCentered>
-                <Column isSize='1/2'>
-                    <Title isSize={2}>Issue List</Title>
-                    {
-                        issues.map((issue, index) => (
-                            <Container>
-                                <Box key={issue.number}>
-                                    <Subtitle isSize={4}>{issue.title}</Subtitle>
-                                    <a href={issue.url} className="is-link">View Issue Details</a>
-                                </Box>
-                                <br />
-                            </Container>
-                        ))
-                    }
+                <Column isSize='3/4'>
+                    {!!issues.length ? (
+                        <>
+                            <Title isSize={2}>Github Issues List</Title>
+                            <Route exact path="/">
+                                <ul>
+                                    {issues.map((issue) => {
+                                        return (
+                                            <Box key={issue.id}>
+                                                {issue.title}
+                                                <Link to={`/issue/${issue.number}`}>View Details</Link>
+                                            </Box>
+                                        );
+                                    })}
+                                </ul>
+                            </Route>
+                            <Route path={`/issue/:issue_number`}>
+                                <Link to="/">Return to List</Link>
+                                <IssueDetail issues={issues} />
+                            </Route>
+                        </>
+                    ) : (
+                        <p>Fetching Issues...</p>
+                    )}
                 </Column>
             </Columns>
         )
