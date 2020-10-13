@@ -10,7 +10,8 @@ const Issue = props => {
         <Container>
             <Box>
                 <Subtitle isSize={4}>{issue.title}</Subtitle>
-                <a href={issue.url} className="is-link">View Issue Details</a>
+                <a href={issue.url} className="is-link">{issue.url}</a>
+                <p className="content">{issue.body}</p>
             </Box>
             <br />
         </Container>

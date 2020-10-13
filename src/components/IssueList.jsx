@@ -4,8 +4,6 @@ import 'bulma/css/bulma.css';
 
 import { Box, Column, Columns, Container, Subtitle, Title } from 'bloomer';
 
-import Issue from './Issue';
-
 class IssueList extends Component {
     state = {
         issues: [],
@@ -35,7 +33,7 @@ class IssueList extends Component {
                     {
                         issues.map((issue, index) => (
                             <Container>
-                                <Box>
+                                <Box key={issue.number}>
                                     <Subtitle isSize={4}>{issue.title}</Subtitle>
                                     <a href={issue.url} className="is-link">View Issue Details</a>
                                 </Box>
