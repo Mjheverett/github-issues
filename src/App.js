@@ -8,17 +8,11 @@ import { Title } from 'bloomer';
 
 // Import my components
 import IssueList from './components/IssueList';
-import IssueDetail from './components/IssueDetail';
 
 function App() {
   return (
     <div className="App">
       <Router>
-        <nav>
-          <Link to="/" className="link">
-            Home
-          </Link>
-        </nav>
         <Switch>
           <Route exact path="/">
             <IssueList />
