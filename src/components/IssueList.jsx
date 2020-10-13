@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import 'bulma/css/bulma.css';
 
-import { Column, Columns, Title } from 'bloomer';
+import { Box, Column, Columns, Container, Subtitle, Title } from 'bloomer';
 
 import Issue from './Issue';
 
@@ -30,11 +30,17 @@ class IssueList extends Component {
 
         return (
             <Columns isCentered>
-                <Column isSize='3/4'>
+                <Column isSize='1/2'>
                     <Title isSize={2}>Issue List</Title>
                     {
                         issues.map((issue, index) => (
-                            <Issue issue={issue} key={`issue=${index}`}/>
+                            <Container>
+                                <Box>
+                                    <Subtitle isSize={4}>{issue.title}</Subtitle>
+                                    <a href={issue.url} className="is-link">View Issue Details</a>
+                                </Box>
+                                <br />
+                            </Container>
                         ))
                     }
                 </Column>
