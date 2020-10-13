@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { Route, Link } from 'react-router-dom';
+import IssueDetail from './IssueDetail';
 
 import 'bulma/css/bulma.css';
 import { Box, Column, Columns, Container, Subtitle, Title } from 'bloomer';
-
-import IssueDetail from './IssueDetail';
 
 const IssueList = props => {
     const [issues, setIssues] = useState([]);
@@ -29,7 +28,7 @@ const IssueList = props => {
                                     return (
                                         <Box key={issue.id}>
                                             {issue.title}
-                                            <Link to={`/issue/${issue.number}`}>View Details</Link>
+                                            <Link to={`/issue/${issue.number}`}> View Details</Link>
                                         </Box>
                                     );
                                 })}
